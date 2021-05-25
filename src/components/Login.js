@@ -1,28 +1,41 @@
-import React, {useContext} from 'react';
-import {UserContext} from '../index';
-import Form from './Form';
+import React, { useContext } from "react";
+import { AuthContext, CredContext } from "../common/contexts";
+import Form from "./Form";
 
 function Login() {
-    const { login } = useContext(UserContext);
+  const { setAuth } = useContext(AuthContext);
+  const { cred } = useContext(CredContext);
 
-    return (
-      <>
-        <h1>Please, log in!</h1>
-        
-        <Form 
-            inputs={[
-                {name: 'email', placeholder: 'Email', type: 'text'},
-                {name: 'password', placeholder: 'Password', type: 'password'}
-            ]}
+  const login = ({ email, password }) => {
+    if (email === cred.email && password === cred.password) setAuth(true);
+  };
 
-            button={{
-                name: 'Login'
-            }}
-            onSubmit={login}
-        />
+  return (
+    <>
+      <h1>Please, log in!</h1>
 
-      </>
-    );
-  }
+      <Form
+        inputs={[
+          {
+            name: "email",
+            placeholder: "Email",
+            type: "text",
+            value: cred.email,
+          },
+          {
+            name: "password",
+            placeholder: "Password",
+            type: "password",
+            value: cred.password,
+          },
+        ]}
+        button={{
+          name: "Login",
+        }}
+        onSubmit={login}
+      />
+    </>
+  );
+}
 
 export default Login;

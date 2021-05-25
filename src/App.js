@@ -1,18 +1,16 @@
-import './App.css';
-import React, {useContext} from 'react';
-import Auth from './components/Auth';
-import Home from './components/Home';
-import{UserContext} from './index'
+import "./App.css";
+import React, { useState } from "react";
+import Auth from "./pages/Auth";
+import { AuthContext } from "./common/contexts";
+import Home from "./pages/Home";
 
 function App() {
-  const { user } = useContext(UserContext);
+  const [auth, setAuth] = useState(false);
 
   return (
-        <div className="App">
-        {
-          user.auth ? <Home /> : <Auth />
-        } 
-        </div>
+    <AuthContext.Provider value={{ auth, setAuth }}>
+      <div className="App">{auth ? <Home /> : <Auth />}</div>
+    </AuthContext.Provider>
   );
 }
 

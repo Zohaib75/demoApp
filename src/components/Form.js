@@ -17,7 +17,8 @@ export default function Form({inputs, button, onSubmit}) {
                         ...(inp.name === 'email' && {pattern: /^\S+@\S+$/i})
                      })}
                         placeholder={inp.placeholder}
-                        type={inp.type}/>
+                        type={inp.type}
+                        />
                 <br/>
                 {errors[inp.name] && errors[inp.name].type === "required" && <span style={{color: 'red', fontSize:'10px'}}>This is required</span>}
                 {errors[inp.name] && inp.name === 'email' && errors[inp.name].type === "pattern" && <span style={{color: 'red', fontSize:'10px'}}>Not a valid Email</span> }
