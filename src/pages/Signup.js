@@ -1,13 +1,19 @@
 import React, { useContext } from "react";
 import { CredContext } from "../common/contexts";
-import Form from "./Form";
+import Form from "../components/Form";
+import { useHistory } from "react-router-dom";
 
 function Signup() {
   const { setCred } = useContext(CredContext);
+  const history = useHistory();
 
   const signup = ({ email, password }) => {
     setCred({ email, password });
+    history.push({
+      pathname: "/auth",
+    });
   };
+
   return (
     <>
       <h1>Please, Sign Up!</h1>

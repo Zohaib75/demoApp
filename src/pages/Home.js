@@ -8,9 +8,8 @@ function Home() {
     setAuth(false);
   };
   return (
-    <>
+    
       <button onClick={logout}>Logout</button>
-    </>
   );
 }
 
