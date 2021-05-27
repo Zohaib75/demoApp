@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext, CredContext } from "../common/contexts";
 import Form from "../components/Form";
 import { useHistory } from "react-router-dom";
+import { Card } from "../styles/card";
 
 function Login() {
   const { setAuth } = useContext(AuthContext);
@@ -18,7 +19,7 @@ function Login() {
   };
 
   return (
-    <>
+    <Card>
       <h1>Please, log in!</h1>
 
       <Form
@@ -39,7 +40,7 @@ function Login() {
         }}
         onSubmit={login}
       />
-    </>
+    </Card>
   );
 }
 

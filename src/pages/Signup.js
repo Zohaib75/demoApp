@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { CredContext } from "../common/contexts";
 import Form from "../components/Form";
 import { useHistory } from "react-router-dom";
+import { Card } from "../styles/card";
 
 function Signup() {
   const { setCred } = useContext(CredContext);
@@ -15,7 +16,7 @@ function Signup() {
   };
 
   return (
-    <>
+    <Card>
       <h1>Please, Sign Up!</h1>
 
       <Form
@@ -33,7 +34,7 @@ function Signup() {
         }}
         onSubmit={signup}
       />
-    </>
+    </Card>
   );
 }
 
