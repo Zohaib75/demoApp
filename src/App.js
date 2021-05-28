@@ -16,12 +16,13 @@ function App() {
     <AuthContext.Provider value={{ auth, setAuth }}>
       <Router>
         <Switch>
+          <PrivateRoute path={`/home`} component={Home} />
+
           <CredContext.Provider value={{ cred, setCred }}>
             <Route exact path={`/auth`} component={Auth} />
             <Route path={`/auth/login`} component={Login} />
             <Route path={`/auth/signup`} component={Signup} />
           </CredContext.Provider>
-          <PrivateRoute path={`/home`} component={Home} />
         </Switch>
       </Router>
     </AuthContext.Provider>
