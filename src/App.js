@@ -4,28 +4,34 @@ import Auth from "./pages/Auth";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-import { AuthContext, CredContext } from "./common/contexts";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { UserContext, CredContext } from "./common/contexts";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import PrivateRoute from "./common/privateRoute";
 
 function App() {
-  const [auth, setAuth] = useState(false);
-  const [cred, setCred] = useState({ email: "", password: "" });
+  const [user, setUser] = useState({ email: "", password: "", auth: false });
+  const [creds, setCreds] = useState([]);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <UserContext.Provider value={{ user, setUser }}>
       <Router>
         <Switch>
+          <Redirect exact from="/" to="/auth" />
           <PrivateRoute path={`/home`} component={Home} />
 
-          <CredContext.Provider value={{ cred, setCred }}>
+          <CredContext.Provider value={{ creds, setCreds }}>
             <Route exact path={`/auth`} component={Auth} />
             <Route path={`/auth/login`} component={Login} />
             <Route path={`/auth/signup`} component={Signup} />
           </CredContext.Provider>
         </Switch>
       </Router>
-    </AuthContext.Provider>
+    </UserContext.Provider>
   );
 }
 

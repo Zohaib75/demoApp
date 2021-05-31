@@ -1,24 +1,33 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { CredContext } from "../common/contexts";
 import Form from "../components/Form";
 import { useHistory } from "react-router-dom";
-import { Card } from "../styles/card";
+import { Card, CardLink } from "../styles/Card";
+import { Span } from "../styles/Span";
 
 function Signup() {
-  const { setCred } = useContext(CredContext);
+  const { creds, setCreds } = useContext(CredContext);
   const history = useHistory();
+  const errorRef = useRef("");
 
   const signup = ({ email, password }) => {
-    setCred({ email, password });
-    history.push({
-      pathname: "/auth",
-    });
+    let cred = creds.find((cred) => cred.email === email);
+    if (cred === undefined) {
+      setCreds((prevCreds) => [...prevCreds, { email, password }]);
+
+      history.push({
+        pathname: "/auth/login",
+      });
+    } else {
+      errorRef.current.textContent = "User with email already exists";
+    }
   };
 
   return (
     <Card>
       <h1>Please, Sign Up!</h1>
 
+      <Span ref={errorRef}>{' '}</Span>
       <Form
         inputs={[
           { name: "email", placeholder: "Email", type: "text" },
@@ -34,6 +43,8 @@ function Signup() {
         }}
         onSubmit={signup}
       />
+
+      <CardLink to="/auth/login">I already have an account</CardLink>
     </Card>
   );
 }

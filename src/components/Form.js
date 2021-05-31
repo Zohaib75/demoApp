@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
-import { Input } from "../styles/input";
-import { Button } from "../styles/button";
+import { Input } from "../styles/Input";
+import { Button } from "../styles/Button";
+import { Span } from "../styles/Span";
 
 export default function Form({ inputs, button, onSubmit }) {
   const {
@@ -31,23 +32,17 @@ export default function Form({ inputs, button, onSubmit }) {
           />
           <br />
           {errors[inp.name] && errors[inp.name].type === "required" && (
-            <span style={{ color: "red", fontSize: "10px" }}>
-              This is required
-            </span>
+            <Span>This is required</Span>
           )}
           {errors[inp.name] &&
             inp.name === "email" &&
             errors[inp.name].type === "pattern" && (
-              <span style={{ color: "red", fontSize: "10px" }}>
-                Not a valid Email
-              </span>
+              <Span> Not a valid Email</Span>
             )}
           {errors[inp.name] &&
             inp.name === "confirmPassword" &&
             errors[inp.name].type === "validate" && (
-              <span style={{ color: "red", fontSize: "10px" }}>
-                {errors[inp.name].message}
-              </span>
+              <Span> {errors[inp.name].message}</Span>
             )}
           <br />
         </div>
