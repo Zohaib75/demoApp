@@ -1,16 +1,17 @@
 import React, { useContext } from "react";
-import { AuthContext } from "../common/contexts";
+import { UserContext } from "../contexts/UserContext";
+import { Button } from "../styles/Button";
 
 function Home() {
-  const { setAuth } = useContext(AuthContext);
+  const { setUser } = useContext(UserContext);
 
   const logout = () => {
-    setAuth(false);
+    setUser({ email: "", password: "", auth: false });
   };
   return (
-    <>
-      <button onClick={logout}>Logout</button>
-    </>
+    <div style={{ textAlign: "center" }}>
+      <Button onClick={logout}>Logout</Button>
+    </div>
   );
 }
 
