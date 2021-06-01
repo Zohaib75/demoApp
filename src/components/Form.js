@@ -29,20 +29,21 @@ export default function Form({ inputs, button, onSubmit }) {
             })}
             placeholder={inp.placeholder}
             type={inp.type}
+            id={inp.id}
           />
           <br />
           {errors[inp.name] && errors[inp.name].type === "required" && (
-            <Span>This is required</Span>
+            <Span role="alert">This is required</Span>
           )}
           {errors[inp.name] &&
             inp.name === "email" &&
             errors[inp.name].type === "pattern" && (
-              <Span> Not a valid Email</Span>
+              <Span role="alert"> Not a valid Email</Span>
             )}
           {errors[inp.name] &&
             inp.name === "confirmPassword" &&
             errors[inp.name].type === "validate" && (
-              <Span> {errors[inp.name].message}</Span>
+              <Span role="alert"> {errors[inp.name].message}</Span>
             )}
           <br />
         </div>

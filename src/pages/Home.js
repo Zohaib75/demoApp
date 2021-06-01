@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UserContext } from "../common/contexts";
+import { UserContext } from "../contexts/UserContext";
 import { Button } from "../styles/Button";
 
 function Home() {

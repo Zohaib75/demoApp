@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import { CredContext } from "../common/contexts";
+import { CredContext } from "../contexts/CredContext";
 import Form from "../components/Form";
 import { useHistory } from "react-router-dom";
 import { Card, CardLink } from "../styles/Card";

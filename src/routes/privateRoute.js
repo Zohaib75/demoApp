@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UserContext } from "./contexts";
+import { UserContext } from "../contexts/UserContext";
 import { Route, Redirect } from "react-router-dom";
 
 export default function PrivateRoute({ component: Component, ...rest }) {
@@ -13,7 +13,7 @@ export default function PrivateRoute({ component: Component, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: "/auth",
+              pathname: "/auth/login",
               state: { from: location },
             }}
           />
