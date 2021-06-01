@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { CredContext } from "../common/contexts";
-import Login from "../components/Login";
-import Signup from "../components/Signup";
+import { Redirect } from "react-router-dom";
 
 export default function Auth() {
-  const [cred, setCred] = useState({ email: "", password: "" });
+  const { cred } = useContext(CredContext);
 
-  return (
-    <CredContext.Provider value={{ cred, setCred }}>
-      {cred.email !== "" && cred.password !== "" ? <Login /> : <Signup />}
-    </CredContext.Provider>
+  return cred.email !== "" && cred.password !== "" ? (
+    <Redirect to="/auth/login" />
+  ) : (
+    <Redirect to="/auth/signup" />
   );
 }

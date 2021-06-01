@@ -1,17 +1,25 @@
 import React, { useContext } from "react";
 import { AuthContext, CredContext } from "../common/contexts";
-import Form from "./Form";
+import Form from "../components/Form";
+import { useHistory } from "react-router-dom";
+import { Card } from "../styles/card";
 
 function Login() {
   const { setAuth } = useContext(AuthContext);
   const { cred } = useContext(CredContext);
+  const history = useHistory();
 
   const login = ({ email, password }) => {
-    if (email === cred.email && password === cred.password) setAuth(true);
+    if (email === cred.email && password === cred.password) {
+      setAuth(true);
+      history.push({
+        pathname: "/home",
+      });
+    }
   };
 
   return (
-    <>
+    <Card>
       <h1>Please, log in!</h1>
 
       <Form
@@ -20,13 +28,11 @@ function Login() {
             name: "email",
             placeholder: "Email",
             type: "text",
-            value: cred.email,
           },
           {
             name: "password",
             placeholder: "Password",
             type: "password",
-            value: cred.password,
           },
         ]}
         button={{
@@ -34,7 +40,7 @@ function Login() {
         }}
         onSubmit={login}
       />
-    </>
+    </Card>
   );
 }
 
